@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpectraOps Admin Login - 2025-06-13 04:39:49 UTC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-title i {
+            margin-right: 1rem;
+            color: #ffd700;
+            font-size: 2.5rem;
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        .system-status {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .status-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .status-value {
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            text-align: center;
+            display: none;
+        }
+
+        .message.error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .message.success {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid #2ecc71;
+            color: #2ecc71;
+        }
+
+        .message.info {
+            background: rgba(52, 152, 219, 0.2);
+            border: 1px solid #3498db;
+            color: #3498db;
+        }
+
+        .message.warning {
+            background: rgba(241, 196, 15, 0.2);
+            border: 1px solid #f1c40f;
+            color: #f1c40f;
+        }
+
+        .credentials-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .credentials-info h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .credentials-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .credentials-info li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.3rem;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-link a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .login-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="login-title">
+                <i class="fas fa-shield-alt"></i>
+                SpectraOps
+            </h1>
+            <p class="login-subtitle">Admin Dashboard Access</p>
+        </div>
+
+        <div class="system-status">
+            <div class="status-item">
+                <span class="status-label">Server:</span>
+                <span id="serverStatus" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">API:</span>
+                <span id="apiStatus" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Time:</span>
+                <span id="currentTime" class="status-value">2025-06-13 04:39:49</span>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username" class="form-label">
+                    <i class="fas fa-user"></i> Username
+                </label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    class="form-input" 
+                    placeholder="Enter your username"
+                    required
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-input" 
+                    placeholder="Enter your password"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button type="submit" class="login-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+            </button>
+        </form>
+
+        <div class="credentials-info">
+            <h4><i class="fas fa-users"></i> Valid Admin Users:</h4>
+            <ul>
+                <li><strong>ranatalhamajid1</strong> (Super Admin)</li>
+                <li><strong>admin</strong> (Admin)</li>
+                <li><strong>talha</strong> (Admin)</li>
+            </ul>
+        </div>
+
+        <div class="back-link">
+            <a href="/coming-soon">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <div class="footer-info">
+            <div>
+                <i class="fas fa-shield-alt"></i>
+                Secure Admin Area - All access attempts logged
+            </div>
+            <div>
+                Last Updated: 2025-06-13 04:39:49 UTC | User: ranatalhamajid1
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // SpectraOps Admin Login - SERVER-INTEGRATED VERSION
+        // Updated: 2025-06-13 04:39:49 UTC
+        // User: ranatalhamajid1
+        // Location: Islamabad, Pakistan
+
+        console.log('🔐 SpectraOps Admin Login System Loading...');
+        console.log('📅 Current Time: 2025-06-13 04:39:49 UTC');
+        console.log('👤 Current User: ranatalhamajid1');
+        console.log('📍 Location: Islamabad, Pakistan');
+
+        // Global variables
+        let serverOnline = false;
+        let loginInProgress = false;
+
+        // Show message function
+        function showMessage(text, type = 'info') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            console.log(`📢 Message: ${text} (${type})`);
+        }
+
+        // Hide message function
+        function hideMessage() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'none';
+        }
+
+        // Check server status
+        async function checkServerStatus() {
+            try {
+                console.log('🔍 Checking server status...');
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                
+                if (data.success || data.status === 'healthy') {
+                    document.getElementById('serverStatus').textContent = 'Online ✅';
+                    document.getElementById('apiStatus').textContent = 'Ready ✅';
+                    serverOnline = true;
+                    console.log('✅ Server is online and ready');
+                } else {
+                    document.getElementById('serverStatus').textContent = 'Error ❌';
+                    document.getElementById('apiStatus').textContent = 'Error ❌';
+                    serverOnline = false;
+                    console.log('❌ Server responded but not healthy');
+                }
+            } catch (error) {
+                console.error('❌ Server check failed:', error);
+                document.getElementById('serverStatus').textContent = 'Offline ❌';
+                document.getElementById('apiStatus').textContent = 'Failed ❌';
+                serverOnline = false;
+            }
+        }
+
+        // Clear any existing session data
+        function clearExistingSession() {
+            console.log('🧹 Clearing any existing session data...');
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            localStorage.removeItem('adminRole');
+            sessionStorage.removeItem('adminToken');
+            sessionStorage.removeItem('spectraops_auth');
+            console.log('✅ Session data cleared');
+        }
+
+        // Handle login form submission
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            if (loginInProgress) {
+                console.log('⏸️ Login already in progress, ignoring');
+                return;
+            }
+
+            loginInProgress = true;
+            hideMessage();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            console.log('🔐 Login attempt initiated...');
+            console.log('👤 Username:', username);
+            console.log('📅 Time: 2025-06-13 04:39:49 UTC');
+            
+            // Validation
+            if (!username || !password) {
+                showMessage('Please enter both username and password', 'error');
+                loginInProgress = false;
+                return;
+            }
+            
+            if (!serverOnline) {
+                showMessage('Server is not available. Please try again later.', 'error');
+                loginInProgress = false;
+                return;
+            }
+            
+            // Set loading state
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            
+            try {
+                console.log('📤 Sending authentication request to server...');
+                
+                const response = await fetch('/api/admin/authenticate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                
+                console.log('📥 Server response status:', response.status);
+                
+                const data = await response.json();
+                console.log('📥 Server response data:', data);
+                
+                if (response.ok && data.success) {
+                    console.log('✅ Server authentication successful!');
+                    console.log('🔑 Session token received:', data.sessionToken ? data.sessionToken.substring(0, 16) + '...' : 'none');
+                    console.log('👤 User:', data.user);
+                    console.log('🎯 Role:', data.role);
+                    
+                    // Clear old session data
+                    clearExistingSession();
+                    
+                    // Store new authentication data
+                    if (data.sessionToken) {
+                        localStorage.setItem('adminToken', data.sessionToken);
+                        localStorage.setItem('adminUser', data.user);
+                        localStorage.setItem('adminRole', data.role);
+                        sessionStorage.setItem('adminToken', data.sessionToken);
+                    }
+                    
+                    console.log('💾 Session data stored successfully');
+                    
+                    showMessage('✅ Login successful! Redirecting to dashboard...', 'success');
+                    
+                    // Redirect to dashboard after delay
+                    setTimeout(() => {
+                        console.log('🔄 Redirecting to admin dashboard...');
+                        
+                        if (data.sessionToken) {
+                            window.location.href = `/admin-dashboard.html?token=${encodeURIComponent(data.sessionToken)}`;
+                        } else {
+                            window.location.href = '/admin-dashboard.html';
+                        }
+                    }, 1500);
+                    
+                } else {
+                    console.error('❌ Server authentication failed:', data);
+                    
+                    // Handle specific error messages from server
+                    let errorMessage = 'Login failed';
+                    
+                    if (data.error === 'Account Locked') {
+                        errorMessage = `Account locked: ${data.message}`;
+                        showMessage(errorMessage, 'error');
+                    } else if (data.error === 'Too Many Login Attempts') {
+                        errorMessage = `Too many attempts: ${data.message}`;
+                        showMessage(errorMessage, 'error');
+                    } else if (data.message) {
+                        errorMessage = data.message;
+                        showMessage(errorMessage, 'error');
+                    } else if (data.error) {
+                        errorMessage = data.error;
+                        showMessage(errorMessage, 'error');
+                    } else {
+                        showMessage('Invalid username or password', 'error');
+                    }
+                    
+                    // Show remaining attempts if available
+                    if (data.attemptsRemaining !== undefined) {
+                        showMessage(`${errorMessage}. ${data.attemptsRemaining} attempts remaining.`, 'error');
+                    }
+                }
+                
+            } catch (error) {
+                console.error('❌ Login request failed:', error);
+                showMessage(`Login failed: ${error.message}`, 'error');
+            } finally {
+                // Reset button state
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+                loginInProgress = false;
+            }
+        }
+
+        // Update current time
+        function updateCurrentTime() {
+            const timeElement = document.getElementById('currentTime');
+            if (timeElement) {
+                const now = new Date();
+                timeElement.textContent = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+            }
+        }
+
+        // Initialize login page
+        function initializeLoginPage() {
+            console.log('🚀 Initializing login page...');
+            
+            // Clear any existing session data
+            clearExistingSession();
+            
+            // Check URL parameters for messages
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            const reason = urlParams.get('reason');
+            
+            if (message) {
+                showMessage(decodeURIComponent(message), 'info');
+            } else if (reason) {
+                showMessage(`Access denied: ${decodeURIComponent(reason)}`, 'warning');
+            }
+            
+            // Set up form event listener
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+                console.log('✅ Login form event listener attached');
+            } else {
+                console.error('❌ Login form not found!');
+            }
+            
+            // Set up Enter key support
+            ['username', 'password'].forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter' && !loginInProgress) {
+                            handleLogin(e);
+                        }
+                    });
+                }
+            });
+            
+            // Check server status
+            checkServerStatus();
+            
+            // Update time once
+            updateCurrentTime();
+            
+            // Focus on username field
+            const usernameField = document.getElementById('username');
+            if (usernameField) {
+                usernameField.focus();
+            }
+            
+            console.log('✅ Login page initialized successfully');
+            console.log('🔐 Server-integrated authentication ready');
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('📄 DOM Content Loaded');
+            initializeLoginPage();
+        });
+
+        console.log('✅ SpectraOps Admin Login script loaded');
+        console.log('📅 Script timestamp: 2025-06-13 04:39:49 UTC');
+        console.log('👤 Script user: ranatalhamajid1');
+        console.log('🌐 Server-integrated authentication enabled');
+    </script>
+</body>
+</html>

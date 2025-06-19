@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SpectraOps Ltd. - Leading cybersecurity and web development company offering penetration testing, SOC consultation, security training, and web solutions.">
+    <meta name="keywords" content="cybersecurity, web development, penetration testing, security consultation, SOC, red teaming, Pakistan">
+    <meta name="author" content="SpectraOps Ltd.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="SpectraOps Ltd. - Cybersecurity & Web Development Experts">
+    <meta property="og:description" content="Expert cybersecurity services and web development solutions to protect and grow your business.">
+    <meta property="og:image" content="https://spectraops.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://spectraops.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SpectraOps Ltd. - Cybersecurity Experts">
+    <meta name="twitter:description" content="Leading cybersecurity and web development company in Pakistan">
+    <meta name="twitter:image" content="https://spectraops.com/assets/images/twitter-card.jpg">
+    
+    <title>SpectraOps Ltd. - Cybersecurity & Web Development Experts</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <!-- Main Styles -->
+     <link rel="stylesheet" href="css/security-tools.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Theme -->
+    <script>
+        // Set initial theme before page load to prevent flash
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/Spectra ops.png" alt="SpectraOps Logo" class="logo">
+                <span class="brand-text">SpectraOps</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#security-tools" class="nav-link">Security Tools</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#contact" class="nav-link">Contact</a>
+             <a href="admin-login.html" class="nav-link admin-link">🔐 Admin</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="hero-grid"></div>
+            <div class="hero-particles"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Locking 
+                        <span class="gradient-text">Down the Digital World</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Expert cybersecurity and web development solutions for a safer digital future
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary">
+                            <i class="fas fa-shield-alt"></i>
+                            Explore Services
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="dashboard-mockup">
+                        <div class="dashboard-header">
+                            <div class="dashboard-title">Security Dashboard</div>
+                            <div class="dashboard-status">
+                                <span class="status-indicator active"></span>
+                                Protected
+                            </div>
+                        </div>
+                        <div class="dashboard-metrics">
+                            <div class="metric">
+                                <div class="metric-label">Threats Blocked</div>
+                                <div class="metric-value" data-target="1247">0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Vulnerabilities Fixed</div>
+                                <div class="metric-value" data-target="89">0</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Uptime</div>
+                                <div class="metric-value" data-target="99.9">0</div>
+                                <span class="metric-unit">%</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-chart">
+                            <canvas id="securityChart" width="300" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive cybersecurity and web development solutions</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">Penetration Testing</h3>
+                    <p class="service-description">
+                        Comprehensive security assessments to identify vulnerabilities before attackers do
+                    </p>
+                    <ul class="service-features">
+                        <li>Network penetration testing</li>
+                        <li>Web application security testing</li>
+                        <li>Mobile app security assessment</li>
+                        <li>Social engineering tests</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="service-title">SOC Consultation</h3>
+                    <p class="service-description">
+                        24/7 security operations center setup and management for continuous monitoring
+                    </p>
+                    <ul class="service-features">
+                        <li>SOC design and implementation</li>
+                        <li>Security incident response</li>
+                        <li>Threat intelligence integration</li>
+                        <li>Compliance monitoring</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">
+                        Secure, scalable, and modern web applications built with latest technologies
+                    </p>
+                    <ul class="service-features">
+                        <li>Secure web application development</li>
+                        <li>API development and integration</li>
+                        <li>Cloud deployment solutions</li>
+                        <li>Performance optimization</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="service-title">Security Training</h3>
+                    <p class="service-description">
+                        Employee awareness programs and technical security training for your team
+                    </p>
+                    <ul class="service-features">
+                        <li>Security awareness training</li>
+                        <li>Technical skills development</li>
+                        <li>Phishing simulation exercises</li>
+                        <li>Compliance training programs</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="security-tools" class="security-tools">
+    <div class="security-tools-container">
+        <div class="section-header" style="margin-top: 40px;">
+            <h2 class="section-title">Security Tools</h2>
+            <p class="section-description">Advanced cybersecurity tools to protect your digital assets</p>
+        </div>
+
+        <div class="security-tools-grid">
+            <!-- Tool 1: Email Breach Checker -->
+            <div class="security-tool">
+                <div class="tool-header">
+                    <span class="tool-icon">📧</span>
+                    <h3 class="tool-title">Email Breach Checker</h3>
+                </div>
+                <p class="tool-description">Check if your email has been compromised in data breaches</p>
+                
+                <div class="input-container">
+                    <input type="email" id="emailInput" class="tool-input" placeholder="Enter email address to check">
+                    <button type="button" class="tool-button" onclick="checkEmailBreach()">
+                        <i class="fas fa-shield-alt"></i> Check Email
+                    </button>
+                </div>
+                
+                <div id="emailResult" class="tool-result-container"></div>
+            </div>
+
+            <!-- Tool 2: Password Strength Analyzer -->
+            <div class="security-tool">
+                <div class="tool-header">
+                    <span class="tool-icon">🔐</span>
+                    <h3 class="tool-title">Password Strength Analyzer</h3>
+                </div>
+                <p class="tool-description">Analyze password strength and get security recommendations</p>
+                
+                <div class="input-container">
+                    <input type="password" id="passwordInput" class="tool-input" placeholder="Enter password to analyze">
+                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('passwordInput')" title="Show or hide password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                
+                <div id="passwordResult" class="tool-result-container"></div>
+            </div>
+
+            <!-- Tool 3: URL Security Scanner -->
+            <div class="security-tool">
+                <div class="tool-header">
+                    <span class="tool-icon">🔗</span>
+                    <h3 class="tool-title">URL Security Scanner</h3>
+                </div>
+                <p class="tool-description">Scan URLs for malicious content and security threats</p>
+                
+                <div class="input-container">
+                    <input type="url" id="urlInput" class="tool-input" placeholder="Enter URL to scan (https://example.com)">
+                    <button type="button" class="tool-button" onclick="scanUrl()">
+                        <i class="fas fa-search"></i> Scan URL
+                    </button>
+                </div>
+                
+                <div id="urlResult" class="tool-result-container"></div>
+            </div>
+
+            <!-- Tool 4: Malicious File Checker -->
+            <div class="security-tool">
+                <div class="tool-header">
+                    <span class="tool-icon">📁</span>
+                    <h3 class="tool-title">Malicious File Checker</h3>
+                </div>
+                <p class="tool-description">Scan files for viruses, malware, and other security threats</p>
+                
+                <div class="input-container">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="fileInput" class="tool-file-input" accept="*/*" onchange="updateFileLabel()">
+                        <label for="fileInput" class="file-input-label">
+                            <i class="fas fa-upload"></i>
+                            <span id="fileInputLabel">Choose file to scan</span>
+                        </label>
+                    </div>
+                    <button type="button" class="tool-button" onclick="scanFile()">
+                        <i class="fas fa-virus-slash"></i> Scan File
+                    </button>
+                </div>
+                
+                <div class="file-info">
+                    <small class="file-help">
+                        <i class="fas fa-info-circle"></i>
+                        Supports all file types • Max size: 10MB • Files are not uploaded to our servers
+                    </small>
+                </div>
+                
+                <div id="fileResult" class="tool-result-container"></div>
+            </div>
+
+            <!-- Tool 5: Password Leak Check (NEW) -->
+            <div class="security-tool">
+                <div class="tool-header">
+                    <span class="tool-icon">🔓</span>
+                    <h3 class="tool-title">Password Leak Check</h3>
+                    <span class="tool-badge">k-Anonymity</span>
+                </div>
+                <p class="tool-description">Check if your password has been exposed in data leaks using secure k-anonymity</p>
+                
+                <div class="input-container">
+                    <input type="password" id="passwordLeakInput" class="tool-input" placeholder="Enter password to check for leaks">
+                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('passwordLeakInput')" title="Show or hide password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                
+                <div class="input-container">
+                    <button type="button" class="tool-button" onclick="checkPasswordLeak()">
+                        <i class="fas fa-user-secret"></i> Check Password
+                    </button>
+                </div>
+                
+                <div class="security-info">
+                    <small class="security-help">
+                        <i class="fas fa-lock"></i>
+                        Uses k-anonymity to protect your password privacy
+                    </small>
+                </div>
+                
+                <div id="passwordLeakResult" class="tool-result-container"></div>
+            </div>
+
+            <!-- Tool 6: IP Reputation Checker (NEW) -->
+            <div class="security-tool">
+                <div class="tool-header">
+                    <span class="tool-icon">🌐</span>
+                    <h3 class="tool-title">IP Reputation Checker</h3>
+                </div>
+                <p class="tool-description">Check IP address reputation and detect malicious activity</p>
+                
+                <div class="input-container">
+                    <input type="text" id="ipInput" class="tool-input" placeholder="Enter IP address (e.g., 192.168.1.1)" pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$">
+                    <button type="button" class="tool-button" onclick="checkIPReputation()">
+                        <i class="fas fa-globe"></i> Check IP
+                    </button>
+                </div>
+                
+                <div class="ip-tools">
+                    <button type="button" class="tool-button-secondary" onclick="getMyIP()">
+                        <i class="fas fa-map-marker-alt"></i> Check My IP
+                    </button>
+                </div>
+                
+                <div class="security-info">
+                    <small class="security-help">
+                        <i class="fas fa-info-circle"></i>
+                        Checks against threat intelligence databases
+                    </small>
+                </div>
+                
+                <div id="ipResult" class="tool-result-container"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Team</h2>
+                <p class="section-subtitle">Meet the experts protecting your digital future</p>
+            </div>
+            
+            <div class="org-chart">
+                <!-- Executive Level -->
+                <div class="org-level ceo-level">
+                    <div class="team-member ceo">
+                        <div class="member-photo">
+                            <img src="assets/CEO.jpg" alt="Zohaib Ahmad Tariq">
+                            <div class="member-overlay">
+                                <a href="https://linkedin.com/in/zohaib-ahmad-tariq" class="linkedin-btn" target="_blank" rel="noopener" title="View Zohaib Ahmad Tariq's LinkedIn Profile">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Zohaib Ahmad Tariq</h4>
+                            <p class="member-role">Chief Executive Officer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- C-Level -->
+                <div class="org-level">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="assets/ali haider.jpg" alt="Ali Haider">
+                            <div class="member-overlay">
+                                <a href="https://www.linkedin.com/in/ali-haider-96394b2b3" class="linkedin-btn" target="_blank" rel="noopener" title="View LinkedIn Profile">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Ali Haider</h4>
+                            <p class="member-role">Chief Operating Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="assets/talha g.jpg" alt="Rana Talha Majid">
+                            <div class="member-overlay">
+                                <a href="https://www.linkedin.com/in/rana-muhammad-talha-majid-25233228b" class="linkedin-btn" target="_blank" title="View LinkedIn Profile" rel="noopener noreferrer"
+>
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Rana Talha Majid</h4>
+                            <p class="member-role">Chief Technology Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="assets/abdullah jamil.jpg" alt="Abdullah">
+                            <div class="member-overlay">
+                                <a href="https://www.linkedin.com/in/abdullah-jamil-798105351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-btn" target="_blank" title="View LinkedIn Profile" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Abdullah</h4>
+                            <p class="member-role">Chief Financial Officer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Senior Leadership -->
+                <div class="org-level">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="assets/jamshed.jpg" alt="Jamshed Fareed">
+                            <div class="member-overlay">
+                                <a href="https://www.linkedin.com/in/jamshaid-fareed-95706a317?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " class="linkedin-btn" target="_blank" title="View LinkedIn Profile" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Jamshaid Fareed</h4>
+                            <p class="member-role">Chief Information Security Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="assets/rao asad.jpg" alt="Rao Asad">
+                            <div class="member-overlay">
+                                <a href="https://www.linkedin.com/in/rao-asad-665605226?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-btn" target="_blank" rel="noopener" title="View LinkedIn Profile">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Rao Asad</h4>
+                            <p class="member-role">Chief Marketing Officer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="assets/ammar zahid.jpg" alt="Muhammad Ammar">
+                            <div class="member-overlay">
+                                <a href="https://www.linkedin.com/in/muhammad-ammmar" class="linkedin-btn" target="_blank" title="View LinkedIn Profile" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h4>Muhammad Ammar</h4>
+                            <p class="member-role">Country Head</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About SpectraOps</h2>
+                    <div class="about-story">
+                        <div class="story-item">
+                            <h3>What is SpectraOps?</h3>
+                            <p>"Spectra" represents the broad range of services we offer, while "Ops" stands for operations, symbolizing precision, control, and execution in everything we do.</p>
+                        </div>
+                        
+                        <div class="story-item">
+                            <h3>Our Mission</h3>
+                            <p>To safeguard digital ecosystems and empower businesses through cutting-edge security and web solutions, ensuring a safer and smarter virtual future.</p>
+                        </div>
+                        
+                        <div class="story-item">
+                            <h3>Our Vision</h3>
+                            <p>To be the leading cybersecurity company in Pakistan, recognized globally for innovative security solutions and exceptional service delivery.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Clients Protected</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="1000">0</div>
+                            <div class="stat-label">Threats Neutralized</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="99.9">0</div>
+                            <div class="stat-label">Uptime Guarantee</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="cyber-globe">
+                        <div class="globe-sphere"></div>
+                        <div class="orbit orbit-1"></div>
+                        <div class="orbit orbit-2"></div>
+                        <div class="orbit orbit-3"></div>
+                        <div class="data-points">
+                            <div class="data-point point-1"></div>
+                            <div class="data-point point-2"></div>
+                            <div class="data-point point-3"></div>
+                            <div class="data-point point-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest News & Insights</h2>
+                <p class="section-subtitle">Stay updated with the latest cybersecurity trends and insights</p>
+            </div>
+            
+            <div class="news-grid" id="news-grid">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+<!-- DUAL-THEME CONTACT FORM SECTION -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">
+                Ready to secure your digital infrastructure? Contact our cybersecurity experts today.
+            </p>
+        </div>
+
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <form id="contactForm" class="theme-contact-form">
+                    <div id="messageContainer"></div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">
+                                Full Name <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                name="fullName" 
+                                class="form-input" 
+                                placeholder="Enter your full name"
+                                required
+                                autocomplete="name"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">
+                                Email Address <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="your.email@example.com"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <input 
+                                type="tel" 
+                                id="phoneNumber" 
+                                name="phoneNumber" 
+                                class="form-input" 
+                                placeholder="+92 XXX XXXXXXX"
+                                autocomplete="tel"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyName" class="form-label">Company Name</label>
+                            <input 
+                                type="text" 
+                                id="companyName" 
+                                name="companyName" 
+                                class="form-input" 
+                                placeholder="Your company name"
+                                autocomplete="organization"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceInterest" class="form-label">Service Interest</label>
+                        <select id="serviceInterest" name="serviceInterest" class="form-select">
+                            <option value="">Select a service...</option>
+                            <option value="Penetration Testing">Penetration Testing</option>
+                            <option value="Security Audit">Security Audit</option>
+                            <option value="Vulnerability Assessment">Vulnerability Assessment</option>
+                            <option value="Security Consulting">Security Consulting</option>
+                            <option value="Incident Response">Incident Response</option>
+                            <option value="Compliance Assessment">Compliance Assessment</option>
+                            <option value="Security Training">Security Training</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">
+                            Subject <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            name="subject" 
+                            class="form-input" 
+                            placeholder="Brief description of your inquiry"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            Message <span class="required">*</span>
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="form-textarea" 
+                            placeholder="Please describe your security needs or questions in detail..."
+                            required
+                            rows="4"
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="math-verification">
+                            <label class="form-label">Security Verification</label>
+                            <div class="math-problem">
+                                Please solve: <span id="mathProblemText">1 + 5 = ?</span>
+                            </div>
+                            <input 
+                                type="number" 
+                                id="mathAnswer" 
+                                name="mathAnswer" 
+                                class="form-input math-input" 
+                                placeholder="Enter answer"
+                                required
+                                data-math-problem="1 + 5"
+                                data-expected-answer="6"
+                            >
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info-wrapper">
+                <div class="contact-info-card">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email Us</h4>
+                         <p> <a href="mailto:spectraopsofficial@gmail.com">spectraopsofficial@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Call Us</h4>
+                         <p>    <a href="tel:+923355558325">+92 335 5558325</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Visit Us</h4>
+                            <p>Multan & Islamabad, Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        SpectraOps
+                    </div>
+                    <p>Leading cybersecurity and web development company providing innovative solutions for digital protection and growth.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/spectraops-official/" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/share/19FuGHmdYb/" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/officialspectraops" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Penetration Testing</a></li>
+                        <li><a href="#services">SOC Consultation</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Security Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <div class="contact-info-footer">
+                       <p>  <a href="mailto:spectraopsofficial@gmail.com"><i class="fas fa-envelope"></i>spectraopsofficial@gmail.com</a></p>
+                       <p> <a href="tel:+923355558325"><i class="fas fa-phone"></i> +92 335 5558325</a> </p>
+                        <p><i class="fas fa-map-marker-alt"></i> Multan & Islamabad, Pakistan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 SpectraOps Ltd. All rights reserved.</p>
+                <div class="footer-links">
+                 <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-services.html">Terms of Service</a></li>
+                    <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                </ul>
+             </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="js/components/theme-manager.js"></script>
+    <script src="js/components/navigation.js"></script>
+    <script src="js/components/security-tools.js"></script>
+    <script src="js/components/animations.js"></script>
+
+
+<!-- Add this before closing </body> tag -->
+<script src="/js/theme-manager.js"></script>
+<script src="/js/navigation.js"></script>
+<script src="/js/security-tools.js"></script>
+<script src="/js/animations.js"></script>
+
+<style>
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+
+<!-- FIXED CONTACT FORM SCRIPT - NO SYNTAX ERRORS -->
+<script src="js/contact-form-fixed.js"></script>
+
+<!-- BACKUP INLINE VERSION IF EXTERNAL FILE DOESN'T WORK -->
+<script>
+// INLINE BACKUP - FIXED CONTACT FORM - 2025-06-11 09:35:59 UTC
+if (typeof submitContactFormFixed === 'undefined') {
+    console.log('📞 Loading INLINE BACKUP Contact Form...');
+    
+    const CURRENT_TIME_BACKUP = '2025-06-11T09:35:59Z';
+    const CURRENT_USER_BACKUP = 'ranatalhamajid1';
+    
+    function validateContactFormBackup() {
+        console.log('🔍 Starting BACKUP contact form validation...');
+        
+        const formData = {
+            fullName: document.getElementById('fullName')?.value?.trim() || '',
+            email: document.getElementById('email')?.value?.trim() || '',
+            phoneNumber: document.getElementById('phoneNumber')?.value?.trim() || '',
+            companyName: document.getElementById('companyName')?.value?.trim() || '',
+            serviceInterest: document.getElementById('serviceInterest')?.value?.trim() || '',
+            subject: document.getElementById('subject')?.value?.trim() || '',
+            message: document.getElementById('message')?.value?.trim() || '',
+            mathAnswer: document.getElementById('mathAnswer')?.value?.trim() || '',
+            mathProblem: '1 + 5'
+        };
+        
+        const errors = [];
+        
+        if (!formData.fullName || formData.fullName.length < 2) {
+            errors.push('Full Name must be at least 2 characters');
+        }
+        
+        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errors.push('Valid Email Address is required');
+        }
+        
+        if (!formData.subject || formData.subject.length < 1) {
+            errors.push('Subject is required');
+        }
+        
+        if (!formData.message || formData.message.length < 1) {
+            errors.push('Message is required');
+        }
+        
+        const providedAnswer = parseInt(formData.mathAnswer);
+        if (!formData.mathAnswer || isNaN(providedAnswer) || providedAnswer !== 6) {
+            errors.push('Math problem incorrect. 1 + 5 = 6');
+        }
+        
+        return {
+            isValid: errors.length === 0,
+            errors: errors,
+            data: formData
+        };
+    }
+    
+    async function submitContactFormBackup(event) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        
+        console.log('🚀 BACKUP CONTACT FORM SUBMISSION');
+        
+        const validation = validateContactFormBackup();
+        
+        if (!validation.isValid) {
+            alert('Error: ' + validation.errors[0]);
+            return false;
+        }
+        
+        const requestData = {
+            ...validation.data,
+            timestamp: CURRENT_TIME_BACKUP,
+            currentUser: CURRENT_USER_BACKUP,
+            location: 'Islamabad, Pakistan',
+            source: 'backup_inline_form'
+        };
+        
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                alert('✅ Message sent successfully!\nReference: ' + result.referenceNumber);
+                // Reset form
+                const form = document.getElementById('contactForm');
+                if (form) form.reset();
+            } else {
+                alert('❌ Error: ' + result.message);
+            }
+        } catch (error) {
+            alert('❌ Network error: ' + error.message);
+        }
+        
+        return false;
+    }
+    
+    // Initialize backup form
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.onsubmit = submitContactFormBackup;
+            
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.onclick = submitContactFormBackup;
+            }
+        }
+    });
+    
+    console.log('✅ BACKUP Contact Form loaded');
+}
+</script>
+<script src="js/contact-form-fixed.js"></script>
+ 
+
+  <!-- News -->
+
+<script>
+const apiKey = "f0d5c02dfe29455c8145a544fbded5f2" ;
+const newsGrid = document.getElementById("news-grid");
+
+async function fetchNews() {
+    const topics = ["cybersecurity", "web development", "digital security"];
+    let articles = [];
+
+    for (const topic of topics) {
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(topic)}&language=en&pageSize=1&apiKey=${apiKey}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.articles.length > 0) {
+            articles.push({
+                title: data.articles[0].title,
+                description: data.articles[0].description,
+                image: data.articles[0].urlToImage,
+                date: new Date(data.articles[0].publishedAt).toDateString(),
+                source: data.articles[0].source.name,
+                url: data.articles[0].url,
+                category: topic
+            });
+        }
+    }
+
+    displayNews(articles);
+}
+
+function displayNews(articles) {
+    newsGrid.innerHTML = articles.map(article => `
+        <div class="news-card">
+            <div class="news-image">
+                <img src="${article.image || 'fallback.jpg'}" alt="News Image">
+                <div class="news-category">${article.category}</div>
+            </div>
+            <div class="news-content">
+                <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                <p>${article.description || 'No description available.'}</p>
+                <div class="news-meta">
+                    <span>${article.date}</span>
+                    <span>${article.source}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+fetchNews();
+</script>
+
+
+</body>
+</html>
