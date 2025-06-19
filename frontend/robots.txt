@@ -1,0 +1,198 @@
+# SpectraOps Cybersecurity - Official Robots.txt
+# Generated: 2025-06-12 11:53:29 UTC
+# User: ranatalhamajid1
+# Location: Islamabad, Pakistan
+# Company: SpectraOps Ltd.
+
+User-agent: *
+
+# ADMIN AREAS - ABSOLUTELY FORBIDDEN
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin-login
+Disallow: /admin-login.html
+Disallow: /admin-dashboard
+Disallow: /admin-dashboard.html
+Disallow: /admin-panel
+Disallow: /admin-panel.html
+
+# API ENDPOINTS - COMPLETELY BLOCKED
+Disallow: /api/admin/
+Disallow: /api/admin/*
+Disallow: /api/auth/
+Disallow: /api/login/
+Disallow: /api/authenticate/
+
+# BACKEND & SYSTEM FILES - STRICTLY FORBIDDEN
+Disallow: /backend/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /config/
+Disallow: /logs/
+Disallow: /database/
+Disallow: /private/
+Disallow: /secure/
+Disallow: /uploads/
+Disallow: /temp/
+Disallow: /cache/
+
+# SYSTEM & CONFIG FILES - BLOCKED
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /.gitignore
+Disallow: /README.md
+Disallow: /.htaccess
+Disallow: /web.config
+Disallow: /simple-server.js
+Disallow: /admin-dashboard.js
+Disallow: /admin-login.js
+
+# SECURITY & AUTHENTICATION - MAXIMUM BLOCKING
+Disallow: /login
+Disallow: /logout
+Disallow: /auth/
+Disallow: /session/
+Disallow: /internal/
+
+# ALLOWED PUBLIC AREAS ONLY
+Allow: /
+Allow: /index.html
+Allow: /coming-soon
+Allow: /security-tools
+Allow: /contact
+
+# STATIC ASSETS - CONTROLLED ACCESS
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.ico
+Allow: /*.woff
+Allow: /*.woff2
+Allow: /*.ttf
+
+# SPECIFIC BOT RULES - ENHANCED CONTROL
+User-agent: Googlebot
+Disallow: /admin
+Disallow: /api/admin/
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+User-agent: Bingbot
+Disallow: /admin
+Disallow: /api/admin/
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+User-agent: facebookexternalhit
+Disallow: /admin
+Allow: /
+
+User-agent: Twitterbot
+Disallow: /admin
+Allow: /
+
+User-agent: LinkedInBot
+Disallow: /admin
+Allow: /
+
+# SECURITY SCANNERS - TOTAL BAN
+User-agent: sqlmap
+Disallow: /
+
+User-agent: nikto
+Disallow: /
+
+User-agent: nmap
+Disallow: /
+
+User-agent: OpenVAS
+Disallow: /
+
+User-agent: w3af
+Disallow: /
+
+User-agent: Nessus
+Disallow: /
+
+User-agent: dirb
+Disallow: /
+
+User-agent: gobuster
+Disallow: /
+
+User-agent: dirbuster
+Disallow: /
+
+User-agent: wpscan
+Disallow: /
+
+User-agent: masscan
+Disallow: /
+
+User-agent: zap
+Disallow: /
+
+User-agent: burp
+Disallow: /
+
+# AGGRESSIVE CRAWLERS - COMPLETE BAN
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SiteAuditBot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: LinkpadBot
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /admin
+Allow: /
+
+# CRAWL DELAY FOR ALLOWED BOTS
+Crawl-delay: 2
+
+# SITEMAP LOCATION
+Sitemap: https://spectraops.com/sitemap.xml
+
+# SECURITY NOTICE
+# This robots.txt file implements maximum protection for SpectraOps admin areas
+# and sensitive system files while allowing legitimate search engine indexing
+# of public content. Admin authentication is required for protected areas.
+# 
+# For security inquiries: contact@spectraops.com
+# System Administrator: ranatalhamajid1
+# Last updated: 2025-06-12 11:53:29 UTC
+# Location: Islamabad, Pakistan

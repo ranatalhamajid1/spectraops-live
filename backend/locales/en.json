@@ -1,0 +1,135 @@
+{
+    "common": {
+        "welcome": "Welcome",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "view": "View",
+        "close": "Close",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "navigation": {
+        "home": "Home",
+        "services": "Services",
+        "about": "About",
+        "contact": "Contact",
+        "news": "News",
+        "security_tools": "Security Tools"
+    },
+    "hero": {
+        "title": "Safeguarding Digital Ecosystems",
+        "subtitle": "Expert cybersecurity and web development solutions for a safer digital future",
+        "cta_primary": "Explore Services",
+        "cta_secondary": "Contact Us"
+    },
+    "services": {
+        "title": "Our Services",
+        "subtitle": "Comprehensive cybersecurity and web development solutions",
+        "penetration_testing": {
+            "title": "Penetration Testing",
+            "description": "Comprehensive security assessments to identify vulnerabilities before attackers do"
+        },
+        "soc_consultation": {
+            "title": "SOC Consultation",
+            "description": "24/7 security operations center setup and management for continuous monitoring"
+        },
+        "web_development": {
+            "title": "Web Development",
+            "description": "Secure, scalable, and modern web applications built with latest technologies"
+        },
+        "security_training": {
+            "title": "Security Training",
+            "description": "Employee awareness programs and technical security training for your team"
+        }
+    },
+    "security_tools": {
+        "title": "Security Tools",
+        "subtitle": "Free security tools to help protect your digital assets",
+        "email_checker": {
+            "title": "Email Breach Checker",
+            "description": "Check if your email has been found in any known data breaches",
+            "placeholder": "Enter email address",
+            "button": "Check Email",
+            "safe": "Great news! This email was not found in any known data breaches.",
+            "breached": "This email has been found in {{count}} known data breaches."
+        },
+        "password_analyzer": {
+            "title": "Password Strength Analyzer",
+            "description": "Analyze password strength and get security recommendations",
+            "placeholder": "Enter password to analyze",
+            "button": "Analyze Password",
+            "strength": {
+                "very_weak": "Very Weak",
+                "weak": "Weak",
+                "medium": "Medium",
+                "strong": "Strong",
+                "very_strong": "Very Strong"
+            }
+        },
+        "url_scanner": {
+            "title": "URL Scanner",
+            "description": "Scan URLs for malicious content and phishing attempts",
+            "placeholder": "Enter URL to scan",
+            "button": "Scan URL",
+            "safe": "URL appears safe. No known threats detected.",
+            "malicious": "Warning! This URL may be malicious. Proceed with caution."
+        }
+    },
+    "about": {
+        "title": "About SpectraOps",
+        "subtitle": "Your trusted cybersecurity partner",
+        "mission": {
+            "title": "Our Mission",
+            "description": "To safeguard digital ecosystems and empower businesses through cutting-edge security and web solutions, ensuring a safer and smarter virtual future."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "description": "To be the leading cybersecurity company in Pakistan, recognized globally for innovative security solutions and exceptional service delivery."
+        },
+        "values": {
+            "title": "Our Values",
+            "security": "Security First",
+            "innovation": "Innovation",
+            "integrity": "Integrity",
+            "excellence": "Excellence"
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "Get in touch with our security experts",
+        "form": {
+            "name": "Full Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "company": "Company Name",
+            "subject": "Subject",
+            "service": "Service Interest",
+            "message": "Message",
+            "captcha": "Solve: {{question}}",
+            "submit": "Send Message"
+        },
+        "info": {
+            "multan": "Multan Office",
+            "islamabad": "Islamabad Office",
+            "email": "Email Us",
+            "phone": "Call Us"
+        },
+        "success": "Thank you for your message! We'll get back to you soon.",
+        "error": "Failed to send message. Please try again."
+    },
+    "footer": {
+        "description": "Leading cybersecurity and web development company providing innovative solutions for digital protection and growth.",
+        "quick_links": "Quick Links",
+        "services_list": "Services",
+        "contact_info": "Contact Information",
+        "follow_us": "Follow Us",
+        "copyright": "© {{year}} SpectraOps Ltd. All rights reserved."
+    }
+}

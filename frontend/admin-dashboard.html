@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpectraOps Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .admin-header {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .admin-title i {
+            margin-right: 0.75rem;
+            font-size: 1.8rem;
+            color: #ffd700;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .dashboard-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color, #00d4ff);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card.blue { --accent-color: #00d4ff; }
+        .stat-card.green { --accent-color: #39ff14; }
+        .stat-card.orange { --accent-color: #ff6b35; }
+        .stat-card.red { --accent-color: #ff073a; }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .stat-card.blue .stat-icon { background: linear-gradient(135deg, #00d4ff, #0099cc); }
+        .stat-card.green .stat-icon { background: linear-gradient(135deg, #39ff14, #00cc44); }
+        .stat-card.orange .stat-icon { background: linear-gradient(135deg, #ff6b35, #ff4500); }
+        .stat-card.red .stat-icon { background: linear-gradient(135deg, #ff073a, #cc0029); }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 0.75rem;
+            color: #00d4ff;
+        }
+
+        .activity-item, .log-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-action {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-details {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-online { background: #39ff14; }
+        .status-warning { background: #ff6b35; }
+        .status-error { background: #ff073a; }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #ff073a;
+            background: rgba(255, 7, 58, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 7, 58, 0.3);
+        }
+
+        .refresh-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .admin-header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .admin-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .dashboard-container {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-title {
+                font-size: 2rem;
+            }
+        }
+        /* Contacts display styling */
+.contacts-list {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.contact-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #00d4ff;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.contact-name {
+    color: #00d4ff;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.contact-email {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.contact-meta {
+    text-align: right;
+}
+
+.contact-date {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+.contact-status {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+}
+
+.status-new {
+    background: #28a745;
+    color: white;
+}
+
+.status-read {
+    background: #6c757d;
+    color: white;
+}
+
+.status-replied {
+    background: #007bff;
+    color: white;
+}
+
+.contact-details {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.contact-details p {
+    margin: 0.3rem 0;
+}
+
+.no-contacts, .contacts-error {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.no-contacts-icon, .error-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.retry-btn, .refresh-btn {
+    background: #00d4ff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.retry-btn:hover, .refresh-btn:hover {
+    background: #0099cc;
+    transform: translateY(-1px);
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.loading-spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #00d4ff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <div class="admin-title">
+            <i class="fas fa-shield-alt"></i>
+            SpectraOps Admin
+        </div>
+        <div class="admin-info">
+            <span id="welcomeUser">Welcome, Admin</span>
+            <span id="currentTime">UTC: 2025-06-13 05:30:52</span>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Dashboard Overview</h1>
+            <p class="dashboard-subtitle">Manage contacts, monitor security tools, and view analytics</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card blue">
+                <div class="stat-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="stat-value" id="totalContacts">0</div>
+                <div class="stat-label">Total Contacts</div>
+            </div>
+
+            <div class="stat-card green">
+                <div class="stat-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="stat-value" id="newThisWeek">0</div>
+                <div class="stat-label">New This Week</div>
+            </div>
+
+            <div class="stat-card orange">
+                <div class="stat-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="stat-value" id="securityToolsUsed">142</div>
+                <div class="stat-label">Security Tools Used</div>
+            </div>
+
+            <div class="stat-card red">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-value" id="avgResponseTime">1.1s</div>
+                <div class="stat-label">Avg Response Time</div>
+            </div>
+        </div>
+
+<!-- Contacts Section -->
+<div class="dashboard-section">
+    <div class="section-header">
+        <h2>📧 Recent Contacts</h2>
+        <button onclick="loadContacts()" class="refresh-btn">
+            <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+    </div>
+    <div id="contacts-container" class="contacts-list">
+        <!-- Contacts will be loaded here -->
+        <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>Loading contacts...</p>
+        </div>
+    </div>
+</div>
+
+        <div class="content-grid">
+            <div class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    Recent Activity
+                </h2>
+                <div id="recentActivity">
+                    <div class="loading">Loading recent activity...</div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Security Logs
+                </h2>
+                <div id="securityLogs">
+                    <div class="loading">Loading security logs...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="refreshStatus" class="refresh-status">
+        Last Updated: <span id="lastUpdate">Never</span>
+    </div>
+
+    <script>
+        // FIXED Admin Dashboard JavaScript - 2025-06-13 05:30:52 UTC
+        // Current User: ranatalhamajid1
+        // Location: Islamabad, Pakistan
+        
+        console.log('🚀 Initializing SpectraOps Admin Dashboard...');
+        console.log('📅 Current Time: 2025-06-13T05:30:52Z');
+        console.log('👤 Current User: ranatalhamajid1');
+        console.log('🌍 Location: Islamabad, Pakistan');
+        
+        const CURRENT_TIME = '2025-06-13T05:30:52Z';
+        const CURRENT_USER = 'ranatalhamajid1';
+        
+        // Global variables
+        let isRefreshing = false;
+        let refreshInterval = null;
+        let sessionToken = null;
+        let isAuthenticated = false;
+        const REFRESH_INTERVAL = 60000; // 60 seconds
+
+        // ===== SESSION MANAGEMENT =====
+        
+        function getSessionToken() {
+            console.log('🔍 Searching for session token...');
+            
+            // Try multiple sources
+            const sources = [
+                () => new URLSearchParams(window.location.search).get('token'),
+                () => localStorage.getItem('adminToken'),
+                () => sessionStorage.getItem('adminToken'),
+                () => getCookie('adminToken')
+            ];
+            
+            for (const getToken of sources) {
+                const token = getToken();
+                if (token) {
+                    console.log('✅ Session token found');
+                    sessionToken = token;
+                    // Store in localStorage if not already there
+                    if (!localStorage.getItem('adminToken')) {
+                        localStorage.setItem('adminToken', token);
+                    }
+                    return token;
+                }
+            }
+            
+            console.log('❌ No session token found');
+            return null;
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        function clearSession() {
+            console.log('🗑️ Clearing admin session');
+            localStorage.removeItem('adminToken');
+            sessionStorage.removeItem('adminToken');
+            document.cookie = 'adminToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            sessionToken = null;
+            isAuthenticated = false;
+        }
+
+        // ===== AUTHENTICATION =====
+        
+        async function checkAuth() {
+            console.log('🔐 Checking authentication...');
+            
+            if (!sessionToken) {
+                console.log('❌ No session token for auth check');
+                return false;
+            }
+            
+            try {
+                const response = await fetch('/api/admin/check', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Session-Token': sessionToken,
+                        'X-User': CURRENT_USER,
+                        'X-Timestamp': CURRENT_TIME
+                    }
+                });
+                
+                console.log('📡 Auth check response status:', response.status);
+                
+                if (response.status === 401) {
+                    console.log('❌ Session expired (401)');
+                    clearSession();
+                    redirectToLogin('Session expired');
+                    return false;
+                }
+                
+                if (!response.ok) {
+                    console.log(`❌ Auth check failed with status: ${response.status}`);
+                    return false;
+                }
+                
+                const result = await response.json();
+                console.log('📥 Auth check result:', result);
+                
+                if (result.success && result.authenticated) {
+                    console.log('✅ Authentication successful');
+                    isAuthenticated = true;
+                    
+                    // Update welcome message
+                    const welcomeEl = document.getElementById('welcomeUser');
+                    if (welcomeEl && result.user) {
+                        welcomeEl.textContent = `Welcome, ${result.user}`;
+                    }
+                    
+                    return true;
+                } else {
+                    console.log('❌ Authentication failed:', result.message);
+                    return false;
+                }
+                
+            } catch (error) {
+                console.error('❌ Auth check error:', error);
+                return false;
+            }
+        }
+
+        function redirectToLogin(reason = 'Authentication required') {
+            console.log(`🔄 Redirecting to login: ${reason}`);
+            clearSession();
+            const message = encodeURIComponent(reason);
+            window.location.href = `/admin-login?message=${message}`;
+        }
+
+        // ===== API HELPERS =====
+        
+        async function makeAuthenticatedRequest(url) {
+            console.log(`📡 Making authenticated request to: ${url}`);
+            
+            if (!sessionToken) {
+                console.log('❌ No session token for API request');
+                redirectToLogin('No session token');
+                return null;
+            }
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Session-Token': sessionToken,
+                        'X-User': CURRENT_USER,
+                        'X-Timestamp': CURRENT_TIME
+                    }
+                });
+                
+                console.log(`📥 Response status for ${url}: ${response.status}`);
+                
+                if (response.status === 401) {
+                    console.log('❌ Session expired during API call');
+                    clearSession();
+                    redirectToLogin('Session expired');
+                    return null;
+                }
+                
+                return response;
+                
+            } catch (error) {
+                console.error(`❌ API request failed for ${url}:`, error);
+                throw error;
+            }
+        }
+
+        // ===== DATA LOADING FUNCTIONS =====
+        
+        async function loadDashboardData() {
+            if (isRefreshing) {
+                console.log('⏳ Already refreshing, skipping duplicate request');
+                return;
+            }
+            
+            isRefreshing = true;
+            
+            try {
+                console.log('📊 Loading dashboard data...');
+                const response = await makeAuthenticatedRequest('/api/admin/dashboard');
+                
+                if (!response) return;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                console.log('📥 Dashboard response:', result);
+                
+                if (result.success && result.data) {
+                    const data = result.data;
+                    
+                    // Update stat cards safely
+                    updateElementSafely('totalContacts', data.totalContacts);
+                    updateElementSafely('newThisWeek', data.newThisWeek);
+                    updateElementSafely('securityToolsUsed', data.securityToolsUsed);
+                    updateElementSafely('avgResponseTime', data.avgResponseTime);
+                    
+                    updateLastRefreshTime();
+                    console.log('✅ Dashboard data loaded successfully');
+                } else {
+                    throw new Error(result.error || 'Failed to load dashboard data');
+                }
+            } catch (error) {
+                console.error('❌ Dashboard data error:', error);
+                showError('Failed to load dashboard data: ' + error.message);
+            } finally {
+                isRefreshing = false;
+            }
+        }
+
+        async function loadRecentActivity() {
+            try {
+                console.log('📈 Loading recent activity...');
+                const response = await makeAuthenticatedRequest('/api/admin/activity');
+                
+                if (!response) return;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const result = await response.json();
+                console.log('📥 Activity response:', result);
+                
+                const container = document.getElementById('recentActivity');
+                if (!container) return;
+                
+                if (result.success && result.activities && result.activities.length > 0) {
+                    container.innerHTML = result.activities.slice(0, 5).map(activity => `
+                        <div class="activity-item">
+                            <div class="activity-time">${new Date(activity.timestamp).toLocaleString()}</div>
+                            <div class="activity-action">
+                                <span class="status-indicator status-online"></span>
+                                ${escapeHtml(activity.action)}
+                            </div>
+                            <div class="activity-details">${escapeHtml(activity.details)}</div>
+                        </div>
+                    `).join('');
+                    console.log('✅ Recent activity loaded successfully');
+                } else {
+                    container.innerHTML = '<div class="loading">No recent activity found</div>';
+                    console.log('📭 No recent activity found');
+                }
+            } catch (error) {
+                console.error('❌ Activity error:', error);
+                const container = document.getElementById('recentActivity');
+                if (container) {
+                    container.innerHTML = '<div class="error">Failed to load recent activity</div>';
+                }
+            }
+        }
+
+        async function loadSecurityLogs() {
+            try {
+                console.log('🔐 Loading security logs...');
+                const response = await makeAuthenticatedRequest('/api/admin/security-logs');
+                
+                if (!response) return;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const result = await response.json();
+                console.log('📥 Security logs response:', result);
+                
+                const container = document.getElementById('securityLogs');
+                if (!container) return;
+                
+                if (result.success && result.securityLogs && result.securityLogs.length > 0) {
+                    container.innerHTML = result.securityLogs.slice(0, 5).map(log => `
+                        <div class="log-item">
+                            <div class="activity-time">${new Date(log.timestamp).toLocaleString()}</div>
+                            <div class="activity-action">
+                                <span class="status-indicator ${log.blocked ? 'status-error' : 'status-online'}"></span>
+                                ${escapeHtml(log.type)}
+                            </div>
+                            <div class="activity-details">
+                                ${log.user ? `User: ${escapeHtml(log.user)}` : ''} 
+                                ${log.ip ? `- IP: ${escapeHtml(log.ip)}` : ''}
+                                ${log.reason ? `- ${escapeHtml(log.reason)}` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+                    console.log('✅ Security logs loaded successfully');
+                } else {
+                    container.innerHTML = '<div class="loading">No security logs found</div>';
+                    console.log('📭 No security logs found');
+                }
+            } catch (error) {
+                console.error('❌ Security logs error:', error);
+                const container = document.getElementById('securityLogs');
+                if (container) {
+                    container.innerHTML = '<div class="error">Failed to load security logs</div>';
+                }
+            }
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        
+        function updateElementSafely(elementId, value) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function updateLastRefreshTime() {
+            const refreshStatus = document.getElementById('refreshStatus');
+            const lastUpdate = document.getElementById('lastUpdate');
+            if (refreshStatus && lastUpdate) {
+                refreshStatus.style.display = 'block';
+                lastUpdate.textContent = new Date().toLocaleTimeString();
+            }
+        }
+
+        function showError(message) {
+            console.error('❌ Error:', message);
+            // Could add visual error display here
+        }
+
+        function updateTimeDisplay() {
+            const timeElement = document.getElementById('currentTime');
+            if (timeElement) {
+                const now = new Date();
+                timeElement.textContent = `UTC: ${now.toISOString().slice(0, 19).replace('T', ' ')}`;
+            }
+        }
+
+        // ===== LOGOUT FUNCTION =====
+        
+        async function logout() {
+            console.log('🚪 Logout initiated...');
+            
+            try {
+                if (refreshInterval) {
+                    clearInterval(refreshInterval);
+                    refreshInterval = null;
+                }
+                
+                if (sessionToken) {
+                    const response = await fetch('/api/admin/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Session-Token': sessionToken,
+                            'X-User': CURRENT_USER,
+                            'X-Timestamp': CURRENT_TIME
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log('✅ Logout successful:', result);
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Logout error:', error);
+            }
+            
+            // Always redirect regardless of API response
+            clearSession();
+            window.location.href = '/admin-login?message=' + encodeURIComponent('Logged out successfully');
+        }
+
+        // ===== AUTO-REFRESH =====
+        
+        function startControlledAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+            
+            refreshInterval = setInterval(() => {
+                console.log('🔄 Controlled auto-refresh triggered (60s interval)');
+                loadDashboardData();
+                loadRecentActivity();
+                loadSecurityLogs();
+            }, REFRESH_INTERVAL);
+            
+            console.log(`⏰ Auto-refresh started with ${REFRESH_INTERVAL/1000}s interval`);
+        }
+
+        // ===== INITIALIZATION =====
+        
+        async function initializeDashboard() {
+            console.log('🚀 Initializing SpectraOps Admin Dashboard...');
+            
+            try {
+                // Get session token
+                sessionToken = getSessionToken();
+                
+                if (!sessionToken) {
+                    console.log('❌ No session token found');
+                    redirectToLogin('No session token found');
+                    return;
+                }
+                
+                console.log('🔑 Session token found, checking authentication...');
+                
+                // Check authentication
+                const authSuccess = await checkAuth();
+                
+                if (!authSuccess) {
+                    console.log('❌ Authentication failed');
+                    redirectToLogin('Authentication failed');
+                    return;
+                }
+                
+                console.log('✅ Authentication successful, loading dashboard...');
+                
+                // Update time display
+                updateTimeDisplay();
+                setInterval(updateTimeDisplay, 30000); // Update every 30 seconds
+                
+                // Load all data
+                await Promise.all([
+                    loadDashboardData(),
+                    loadRecentActivity(),
+                    loadSecurityLogs()
+                ]);
+                
+                console.log('✅ Initial data loaded successfully');
+                
+                // Start controlled auto-refresh
+                startControlledAutoRefresh();
+                
+                console.log('✅ Admin Dashboard initialized successfully! 🎉');
+                
+            } catch (error) {
+                console.error('❌ Dashboard initialization error:', error);
+                redirectToLogin('Initialization failed: ' + error.message);
+            }
+        }
+
+        // ===== EVENT LISTENERS =====
+        
+        // Start when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeDashboard);
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+                console.log('⏹️ Auto-refresh cleared on page unload');
+            }
+        });
+        
+        console.log('✅ Admin Dashboard script loaded - 2025-06-13 05:30:52 UTC');
+    </script>
+    <script>// Fixed contact loading function
+async function loadContacts() {
+    try {
+        const token = localStorage.getItem('adminToken') || sessionStorage.getItem('adminToken');
+        
+        if (!token) {
+            console.error('No admin token found');
+            return;
+        }
+
+        const response = await fetch('/api/admin/messages', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Session-Token': token
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        
+        console.log('📧 Contacts data received:', data);
+        
+        if (data.success && data.contacts) {
+            displayContacts(data.contacts);
+        } else {
+            console.warn('No contacts found in response');
+            showNoContactsMessage();
+        }
+        
+    } catch (error) {
+        console.error('Error loading contacts:', error);
+        showContactsError(error.message);
+    }
+}
+
+// Function to display contacts in the dashboard
+function displayContacts(contacts) {
+    const contactsContainer = document.getElementById('contacts-container') || 
+                             document.querySelector('.contacts-list') ||
+                             document.querySelector('#contactsList');
+    
+    if (!contactsContainer) {
+        console.error('Contacts container not found in DOM');
+        return;
+    }
+
+    if (!contacts || contacts.length === 0) {
+        showNoContactsMessage();
+        return;
+    }
+
+    const contactsHTML = contacts.map(contact => `
+        <div class="contact-item" data-id="${contact.id}">
+            <div class="contact-header">
+                <div class="contact-info">
+                    <h4 class="contact-name">${contact.fullName}</h4>
+                    <span class="contact-email">${contact.email}</span>
+                </div>
+                <div class="contact-meta">
+                    <span class="contact-date">${new Date(contact.timestamp).toLocaleDateString()}</span>
+                    <span class="contact-status status-${contact.status || 'new'}">${contact.status || 'New'}</span>
+                </div>
+            </div>
+            <div class="contact-details">
+                <p><strong>Subject:</strong> ${contact.subject}</p>
+                <p><strong>Service:</strong> ${contact.serviceInterest || 'General Inquiry'}</p>
+                <p><strong>Message:</strong> ${contact.message}</p>
+                ${contact.phoneNumber ? `<p><strong>Phone:</strong> ${contact.phoneNumber}</p>` : ''}
+                ${contact.companyName ? `<p><strong>Company:</strong> ${contact.companyName}</p>` : ''}
+            </div>
+        </div>
+    `).join('');
+
+    contactsContainer.innerHTML = contactsHTML;
+    
+    console.log(`✅ Displayed ${contacts.length} contacts`);
+}
+
+// Function to show "no contacts" message
+function showNoContactsMessage() {
+    const contactsContainer = document.getElementById('contacts-container') || 
+                             document.querySelector('.contacts-list') ||
+                             document.querySelector('#contactsList');
+    
+    if (contactsContainer) {
+        contactsContainer.innerHTML = `
+            <div class="no-contacts">
+                <div class="no-contacts-icon">📭</div>
+                <h3>No Contacts Yet</h3>
+                <p>Contact form submissions will appear here.</p>
+            </div>
+        `;
+    }
+}
+
+// Function to show contacts loading error
+function showContactsError(errorMessage) {
+    const contactsContainer = document.getElementById('contacts-container') || 
+                             document.querySelector('.contacts-list') ||
+                             document.querySelector('#contactsList');
+    
+    if (contactsContainer) {
+        contactsContainer.innerHTML = `
+            <div class="contacts-error">
+                <div class="error-icon">❌</div>
+                <h3>Error Loading Contacts</h3>
+                <p>${errorMessage}</p>
+                <button onclick="loadContacts()" class="retry-btn">Retry</button>
+            </div>
+        `;
+    }
+}
+
+// Initialize contacts loading when dashboard loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Loading contacts on dashboard init');
+    loadContacts();
+    
+    // Auto-refresh contacts every 30 seconds
+    setInterval(loadContacts, 30000);
+});</script>
+</body>
+</html>
